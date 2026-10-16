@@ -6,10 +6,9 @@
     <title>Melisa | Professional Model Portfolio</title>
     <style>
         :root {
-            --primary: #111111;
+            --primary: #0a0a0a;
             --secondary: #ffffff;
-            --accent: #d4af37; /* Metallic Gold */
-            --bg-gradient: linear-gradient(135deg, #111111 0%, #222222 100%);
+            --accent: #d4af37; /* Premium Gold */
             --font-serif: 'Playfair Display', 'Didot', 'Georgia', serif;
             --font-sans: 'Montserrat', 'Helvetica Neue', sans-serif;
         }
@@ -21,7 +20,7 @@
         }
 
         body {
-            background: var(--bg-gradient);
+            background-color: var(--primary);
             color: var(--secondary);
             font-family: var(--font-sans);
             line-height: 1.6;
@@ -29,35 +28,37 @@
             position: relative;
         }
 
-        /* Sparkle Background Effect */
-        body::before {
-            content: "";
+        /* Continuous Ambient Sparkle Effect */
+        .sparkle-layer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background-image: 
-                radial-gradient(circle, #fff 1px, transparent 1px),
-                radial-gradient(circle, #fff 1px, transparent 1px);
-            background-size: 100px 100px, 150px 150px;
-            background-position: 0 0, 50px 50px;
-            opacity: 0.15;
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 1px, transparent 2px),
+                radial-gradient(circle at 75% 15%, rgba(212,175,55,0.9) 1.5px, transparent 2.5px),
+                radial-gradient(circle at 40% 85%, rgba(255,255,255,0.7) 1px, transparent 2px),
+                radial-gradient(circle at 85% 70%, rgba(212,175,55,0.8) 2px, transparent 3px),
+                radial-gradient(circle at 10% 60%, rgba(255,255,255,0.6) 1.5px, transparent 2.5px);
+            background-size: 400px 400px;
+            opacity: 0.25;
             z-index: 1;
             pointer-events: none;
-            animation: twinkle 8s linear infinite;
+            animation: shimmer 12s linear infinite;
         }
 
-        @keyframes twinkle {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
+        @keyframes shimmer {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); opacity: 0.4; }
+            100% { transform: translateY(-60px) scale(1); }
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
+            padding: 2.5rem 8%;
             position: absolute;
             width: 100%;
             z-index: 10;
@@ -65,11 +66,12 @@
 
         .logo {
             font-family: var(--font-serif);
-            font-size: 2rem;
-            letter-spacing: 4px;
+            font-size: 2.2rem;
+            letter-spacing: 5px;
             color: var(--secondary);
             text-decoration: none;
             text-transform: uppercase;
+            font-weight: 400;
         }
 
         .logo span {
@@ -79,10 +81,10 @@
         nav a {
             color: var(--secondary);
             text-decoration: none;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             transition: color 0.3s ease;
         }
 
@@ -90,35 +92,28 @@
             color: var(--accent);
         }
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 5% 60px 5%;
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 160px 8% 80px 8%;
             position: relative;
             z-index: 2;
         }
 
-        .hero-container {
+        .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .hero-text {
-            max-width: 500px;
+            margin-bottom: 6rem;
         }
 
         .hero-text h1 {
             font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 400;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             letter-spacing: 2px;
         }
 
@@ -126,198 +121,212 @@
             display: block;
             color: var(--accent);
             font-style: italic;
+            font-size: 3.2rem;
+            margin-top: 0.5rem;
         }
 
         .hero-text p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #cccccc;
-            margin-bottom: 2.5rem;
-            letter-spacing: 1px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             background: transparent;
             color: var(--accent);
             border: 1px solid var(--accent);
             text-decoration: none;
             text-transform: uppercase;
             font-size: 0.85rem;
-            letter-spacing: 3px;
-            transition: all 0.4s ease;
-            position: relative;
+            letter-spacing: 4px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .cta-button:hover {
             background: var(--accent);
             color: var(--primary);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
         }
 
-        .portfolio-display {
+        /* Polished Visual Showcase Grid */
+        .gallery-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-        .image-wrapper {
+        .image-frame {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(215, 175, 55, 0.2);
-            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 2px;
             aspect-ratio: 3 / 4;
-            background: #1a1a1a;
+            background-color: #121212;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        .image-wrapper img {
+        .image-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .image-wrapper:hover img {
-            transform: scale(1.05);
+        .image-frame:hover img {
+            transform: scale(1.04);
         }
 
         .about-section {
-            padding: 100px 5%;
-            background: #0d0d0d;
-            position: relative;
-            z-index: 2;
+            padding: 8rem 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
             text-align: center;
         }
 
-        .about-content {
-            max-width: 800px;
+        .about-inner {
+            max-width: 850px;
             margin: 0 auto;
         }
 
-        .about-content h2 {
+        .about-inner h2 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .about-inner p {
+            color: #b5b5b5;
+            font-size: 1.15rem;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+        }
+
+        .booking-card {
+            background: linear-gradient(180deg, #111 0%, #070707 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3.5rem 2rem;
+            display: inline-block;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 4px;
+        }
+
+        .booking-tag {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .phone-number {
             font-family: var(--font-serif);
             font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-        }
-
-        .about-content p {
-            color: #bbbbbb;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info {
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            padding-top: 2rem;
-            margin-top: 2rem;
-        }
-
-        .phone-link {
-            font-family: var(--font-serif);
-            font-size: 2rem;
             color: var(--secondary);
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             transition: color 0.3s ease;
             display: inline-block;
-            margin-top: 0.5rem;
         }
 
-        .phone-link:hover {
+        .phone-number:hover {
             color: var(--accent);
         }
 
         footer {
-            padding: 3rem 5%;
+            padding: 4rem 8%;
             text-align: center;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: #666666;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #555555;
             text-transform: uppercase;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid #151515;
             position: relative;
             z-index: 2;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1.5rem;
-            }
-            nav a {
-                margin: 0 0.75rem;
-            }
-            .hero-container {
+        @media (max-width: 992px) {
+            .profile-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 4rem;
                 text-align: center;
             }
-            .hero-text {
-                margin: 0 auto;
-            }
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
-            .portfolio-display {
-                max-width: 500px;
+            .hero-text h1 span {
+                font-size: 2.4rem;
+            }
+            .gallery-showcase {
+                max-width: 650px;
                 margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 2rem 5%;
+            }
+            nav a {
+                margin: 0 1rem;
+            }
+            .gallery-showcase {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .phone-number {
+                font-size: 1.8rem;
             }
         }
     </style>
-    <!-- Google Fonts for High-End Typography -->
+    <!-- Premium Fonts -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
+    <div class="sparkle-layer"></div>
+
     <header>
         <a href="#" class="logo">Melisa<span>.</span></a>
         <nav>
-            <a href="#about">About</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#booking">Contact</a>
+            <a href="#about">Profile</a>
+            <a href="#portfolio">Gallery</a>
+            <a href="#booking">Inquiries</a>
         </nav>
     </header>
 
-    <section class="hero" id="portfolio">
-        <div class="hero-container">
+    <main class="main-container">
+        
+        <section class="profile-grid" id="portfolio">
             <div class="hero-text">
-                <h1>High Fashion <span>& Sophistication</span></h1>
-                <p>Welcome to the digital portfolio of Melisa, a highly versatile professional model specializing in luxury editorials, high-profile events, global campaigns, and commercial assignments.</p>
+                <h1>High Fashion <span>& Elegance</span></h1>
+                <p>Presenting the professional portfolio of Melisa. A dedicated model delivering refined visuals, creative depth, and exceptional presence for editorial campaigns, runway production, commercial features, and luxury brand lookbooks.</p>
                 <a href="#booking" class="cta-button">Inquire Availability</a>
             </div>
             
-            <div class="portfolio-display">
-                <!-- Replace 'image_9fQgGj.png' with your actual hosted image path -->
-                <div class="image-wrapper">
-                    <img src="image_9fQgGj.png" alt="Melisa Editorial Presentation">
+            <div class="gallery-showcase">
+                <!-- Exact image links preserved and configured to render correctly when matching the local repository layout -->
+                <div class="image-frame">
+                    <img src="image_9fQgGj.png" alt="Melisa Editorial Modeling Project">
                 </div>
-                <!-- Replace 'image_q9-UEs.png' with your actual hosted image path -->
-                <div class="image-wrapper">
-                    <img src="image_q9-UEs.png" alt="Melisa Portrait Presentation">
+                <div class="image-frame">
+                    <img src="image_q9-UEs.png" alt="Melisa Portrait Photographic Work">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2>Inviting & Striking Visuals</h2>
-            <p>Bringing a highly sophisticated aesthetic and graceful presence to every project, Melisa works fluidly across luxury branding, commercial media, production installations, and exclusive runway showcases. Designed to meet the creative requirements of discerning directors, photographers, and premium brand agencies worldwide.</p>
-            
-            <div class="contact-info" id="booking">
-                <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 3px; color: var(--accent);">Direct Booking & Representation</p>
-                <a href="tel:9165793284" class="phone-link">(916) 579-3284</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2026 Melisa Modeling. All Rights Reserved. Designed with Excellence.
-    </footer>
-
-</body>
-</html>
+        <section class="about-section" id="about">
+            <div class="about-inner">
+                <h2>Sophisticated Representation</h2>
