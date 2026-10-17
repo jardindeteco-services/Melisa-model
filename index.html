@@ -88,15 +88,15 @@
 
         .hero-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr; /* Gives slightly more horizontal space to text on desktop */
             gap: 4rem;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1100px; /* Snug, clean container size */
             width: 100%;
         }
 
         .hero-text {
-            max-width: 500px;
+            max-width: 550px;
         }
 
         .hero-text h1 {
@@ -141,11 +141,11 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
+        /* Moderated Image Workspace sizing for premium cross-device scale */
         .portfolio-display {
-            display: grid;
-            grid-template-columns: 1fr;
-            max-width: 450px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
         }
 
@@ -156,6 +156,8 @@
             border-radius: 4px;
             aspect-ratio: 3 / 4;
             background: #1a1a1a;
+            max-width: 340px; /* Reduced desktop frame to a highly balanced, moderate size */
+            width: 100%;
         }
 
         .image-wrapper img {
@@ -171,7 +173,7 @@
         }
 
         .about-section {
-            padding: 100px 5%;
+            padding: 80px 5%;
             background: #0d0d0d;
             position: relative;
             z-index: 2;
@@ -179,13 +181,13 @@
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .about-content h2 {
             font-family: var(--font-serif);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--accent);
             margin-bottom: 1.5rem;
             letter-spacing: 2px;
@@ -193,7 +195,7 @@
 
         .about-content p {
             color: #bbbbbb;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 2rem;
         }
 
@@ -205,7 +207,7 @@
 
         .phone-link {
             font-family: var(--font-serif);
-            font-size: 2rem;
+            font-size: 1.8rem; /* Scaled down slightly to prevent breaking rows on narrow screens */
             color: var(--secondary);
             text-decoration: none;
             letter-spacing: 2px;
@@ -230,23 +232,47 @@
             z-index: 2;
         }
 
+        /* Advanced Responsive Architecture (Computers, Tablets & Mobile Devices) */
+        @media (max-width: 992px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .hero-container {
+                gap: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 2rem 1.5rem 0 1.5rem;
             }
+            .logo {
+                font-size: 2rem;
+            }
             .hero-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Flips seamlessly to clean single-column stacked view */
                 gap: 3rem;
                 text-align: center;
             }
             .hero-text {
                 margin: 0 auto;
+                order: 1; /* Retains introductory messaging layout position above picture */
             }
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 2.4rem;
+            }
+            .hero-text p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
             .portfolio-display {
-                max-width: 400px;
+                order: 2;
+            }
+            .image-wrapper {
+                max-width: 280px; /* Snappy, moderate picture frames optimized for handheld screens */
+            }
+            .phone-link {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -290,15 +316,9 @@
             <p>For bookings, campaign details, or representation outreach, contact management directly at:</p>
             <div class="contact-info">
                 <p>Direct Representation Line</p>
-                <!-- Updated phone number and tel: protocol structure -->
                 <a href="tel:+19165793284" class="phone-link">(916) 579-3284</a>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Melisa Portfolio. All Rights Reserved.
-    </footer>
-
-</body>
-</html>
